@@ -1,6 +1,3 @@
-from random import choice
-from timeit import timeit
-
 import numpy as np
 
 
@@ -50,37 +47,3 @@ class Grid:
         """Returns State at Right-Left Diagonal"""
 
         return np.diagonal(np.fliplr(self.grid))
-
-
-def tests():
-    testGrid = Grid()
-
-    print(testGrid.grid)
-    print(f"{testGrid.getStateAt(0, 1) = }")
-
-    testGrid.setStateAt(0, 1, -1)
-    testGrid.setStateAt(0, 1, -1)
-    print(f"{testGrid.getStateAt(0, 1) = }")
-
-    for xCoord in range(3):
-        for yCoord in range(3):
-            randomState = choice([-1, 1, 0])
-            print(f"{randomState:.0f} at row {xCoord}, column {yCoord}")
-            testGrid.setStateAt(xCoord, yCoord, randomState)
-            # print(testGrid.getStateGrid())
-
-    print(testGrid.getGridState())
-    print(f"{testGrid.getRowStateAt(0) = }")
-    print(f"{testGrid.getRowStateAt(1) = }")
-    print(f"{testGrid.getRowStateAt(2) = }")
-    print()
-    print(f"{testGrid.getColumnStateAt(0) = }")
-    print(f"{testGrid.getColumnStateAt(1) = }")
-    print(f"{testGrid.getColumnStateAt(2) = }")
-    print()
-    print(f"{testGrid.getLeftRightDiagonal() = }")
-    print(f"{testGrid.getRightLeftDiagonal() = }")
-
-
-if __name__ == "__main__":
-    tests()
