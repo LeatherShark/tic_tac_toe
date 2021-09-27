@@ -1,5 +1,7 @@
-import numpy as np
 from random import choice
+from timeit import timeit
+
+import numpy as np
 
 
 class SetStateError(Exception):
@@ -12,92 +14,72 @@ class Grid:
     def __init__(self):
         """Initialize the Grid."""
 
-        self.grid = np.array(
-            [{"row": row, "column": column, "state": 0} for row in range(3) for column in range(3)]
-        ).reshape(3, 3)
+        self.grid = np.zeros(shape=(3, 3), dtype="i4")
 
     def getStateAt(self, row: int, column: int) -> int:
-        """Returns State of Cell."""
+        """Returns the State at given cell."""
 
-        return self.grid[row][column]["state"]
+        return self.grid[row, column]
 
     def setStateAt(self, row: int, column: int, state: int) -> None:
-        """Sets State at Cell."""
+        """Sets the State at given cell."""
 
-        # Checks if State is Unassigned
-        if self.getStateAt(row, column) != 0:
-            raise SetStateError("Cannot Assign State to a Cell twice.")
+        self.grid[row, column] = state
 
-        self.grid[row][column]["state"] = state
+    def getGridState(self) -> np.ndarray:
+        """Returns Grid."""
 
-    def getStateGrid(self):
-        """Returns Grid of States."""
+        return self.grid
 
-        return np.array(
-            [self.getStateAt(row=row, column=column) for row in range(3) for column in range(3)]
-        ).reshape(3, 3)
+    def getRowStateAt(self, row: int) -> np.ndarray:
+        """Returns State at given row."""
 
-    def getStateColumn(self, column: int):
-        """Returns a numpy array of States of the given column."""
+        return self.grid[row, :]
 
-        # return self.grid
+    def getColumnStateAt(self, column: int) -> np.ndarray:
+        """Returns State at given column."""
 
-        # return np.array(
-        #     [self.getStateAt(row=row, column=column) for row in range(3)]
-        # ).reshape(3, 1)
+        return self.grid[:, column]
 
-    def getStateRow(self, row: int):
-        """Returns a numpy array of States of the given row."""
+    def getLeftRightDiagonal(self) -> np.ndarray:
+        """Returns State at Left-Right Diagonal"""
 
-        return np.array(
-            [self.getStateAt(row=row, column=column) for column in range(3)]
-        ).reshape(1, 3)
-    
-    def getStateLeftRightDiagonal(self):
-        """Returns a numpy array of States of the Left-Right Diagonal"""
-        print("Hello")
-        return self.grid.diagonal(-1, 0, 1)
+        return np.diagonal(self.grid)
 
-        # return np.array([
-        #     self.getStateAt(row=0, column=0),
-        #     self.getStateAt(row=1, column=1),
-        #     self.getStateAt(row=2, column=2)
-        # ]).reshape(3, 1)
-        
+    def getRightLeftDiagonal(self) -> np.ndarray:
+        """Returns State at Right-Left Diagonal"""
 
-    def getStateRightLeftDiagonal(self):
-        """Returns a numpy array of States of the Right-Left Diagonal"""
-
-        return np.array([
-            self.getStateAt(row=0, column=2),
-            self.getStateAt(row=1, column=1),
-            self.getStateAt(row=2, column=0)
-        ]).reshape(3, 1)
+        return np.diagonal(np.fliplr(self.grid))
 
 
 def tests():
     testGrid = Grid()
 
     print(testGrid.grid)
+    print(f"{testGrid.getStateAt(0, 1) = }")
+
+    testGrid.setStateAt(0, 1, -1)
+    testGrid.setStateAt(0, 1, -1)
+    print(f"{testGrid.getStateAt(0, 1) = }")
+
     for xCoord in range(3):
         for yCoord in range(3):
             randomState = choice([-1, 1, 0])
             print(f"{randomState:.0f} at row {xCoord}, column {yCoord}")
             testGrid.setStateAt(xCoord, yCoord, randomState)
             # print(testGrid.getStateGrid())
-    # testGrid.setStateAt(0, 0, 1)
-    print(testGrid.getStateGrid())
 
-    print(testGrid.getStateColumn(0))
-    print(testGrid.getStateColumn(1))
-    print(testGrid.getStateColumn(2))
-
-    print(testGrid.getStateRow(0))
-    print(testGrid.getStateRow(1))
-    print(testGrid.getStateRow(2))
-
-    print(testGrid.getStateLeftRightDiagonal())
-    print(testGrid.getStateRightLeftDiagonal())
+    print(testGrid.getGridState())
+    print(f"{testGrid.getRowStateAt(0) = }")
+    print(f"{testGrid.getRowStateAt(1) = }")
+    print(f"{testGrid.getRowStateAt(2) = }")
+    print()
+    print(f"{testGrid.getColumnStateAt(0) = }")
+    print(f"{testGrid.getColumnStateAt(1) = }")
+    print(f"{testGrid.getColumnStateAt(2) = }")
+    print()
+    print(f"{testGrid.getLeftRightDiagonal() = }")
+    print(f"{testGrid.getRightLeftDiagonal() = }")
 
 
 if __name__ == "__main__":
