@@ -11,6 +11,11 @@ class Grid:
     def __init__(self):
         """Initialize the Grid."""
 
+        self.createGrid()
+
+    def createGrid(self):
+        """Creates the Grid"""
+
         self.grid = np.zeros(shape=(3, 3), dtype="i4")
 
     def getStateAt(self, row: int, column: int) -> int:
