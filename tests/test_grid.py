@@ -1,11 +1,7 @@
-import sys
-
-sys.path.append(r"C:\python_projects\tic_tac_toe")
-
-import numpy as np
 import pytest
+import numpy as np
 
-from src.grid import *
+from src.grid import Grid
 
 
 @pytest.fixture
@@ -79,10 +75,8 @@ def test_getLeftRightDiagonal(mockGrid: Grid):
     assert np.array_equal(mockGrid.getLeftRightDiagonal(), mockLeftRightDiagonal)
 
 
-
 def test_getRightLeftDiagonal(mockGrid: Grid):
     """Tests Grid.getRightLeftDiagonal"""
 
     mockRightLeftDiagonal = np.array([2, 4, 6])
     assert np.array_equal(mockGrid.getRightLeftDiagonal(), mockRightLeftDiagonal)
-    
