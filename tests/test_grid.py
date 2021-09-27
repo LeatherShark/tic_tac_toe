@@ -12,14 +12,14 @@ def mockGrid():
      [3 4 5]
      [6 7 8]]
     """
-    mock_grid = Grid()
+    mockGridObject = Grid()
     state = 0
     for row in range(3):
         for column in range(3):
-            mock_grid.setStateAt(row, column, state)
+            mockGridObject.setStateAt(row, column, state)
             state += 1
 
-    return mock_grid
+    return mockGridObject
 
 
 def test_getStateAt(mockGrid: Grid):
