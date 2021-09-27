@@ -39,11 +39,11 @@ class Grid:
         return self.grid[:, column]
 
     def getLeftRightDiagonal(self) -> np.ndarray:
-        """Returns State at Left-Right Diagonal"""
+        """Returns State at Left-Right Diagonal."""
 
         return np.diagonal(self.grid)
 
     def getRightLeftDiagonal(self) -> np.ndarray:
-        """Returns State at Right-Left Diagonal"""
+        """Returns State at Right-Left Diagonal."""
 
         return np.diagonal(np.fliplr(self.grid))
