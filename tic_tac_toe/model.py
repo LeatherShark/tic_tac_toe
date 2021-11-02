@@ -1,6 +1,7 @@
 import numpy as np
-
-from src.grid import Grid
+import sys
+print("\n".join(sys.path))
+from tic_tac_toe.grid import Grid
 
 
 class TicTacToeModel(Grid):
