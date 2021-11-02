@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 
-from src.grid import Grid
+from tic_tac_toe.grid import Grid
 
 
 @pytest.fixture
