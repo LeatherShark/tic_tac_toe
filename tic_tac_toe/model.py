@@ -1,6 +1,6 @@
 import numpy as np
-import sys
-print("\n".join(sys.path))
+from random import randint
+
 from tic_tac_toe.grid import Grid
 
 
@@ -59,8 +59,6 @@ class TicTacToeModel(Grid):
         print(f"{self.getRightLeftDiagonal().sum() = }")
         print(winDict)
 
-
-from random import randint
 
 testModel = TicTacToeModel()
 

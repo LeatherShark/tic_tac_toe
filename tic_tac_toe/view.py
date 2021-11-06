@@ -4,9 +4,19 @@ from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtCore import pyqtSignal as Signal
 from PyQt5.QtCore import pyqtSlot as Slot
 from PyQt5.QtGui import QFont, QIcon, QImage
-from PyQt5.QtWidgets import (QApplication, QDesktopWidget, QGridLayout, QLabel,
-                             QLineEdit, QMainWindow, QMenu, QPushButton,
-                             QToolBar, QVBoxLayout, QWidget)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QDesktopWidget,
+    QGridLayout,
+    QLabel,
+    QLineEdit,
+    QMainWindow,
+    QMenu,
+    QPushButton,
+    QToolBar,
+    QVBoxLayout,
+    QWidget,
+)
 
 
 class TicTacToeUi(QWidget):
@@ -24,26 +34,18 @@ class TicTacToeUi(QWidget):
         # Starts Window (must be called at the end of __init__)
         self.show()
 
-    def createWindow(
-        self, windowTitle: str, windowWidth: int, windowHeight: int
-    ) -> None:
+    def createWindow(self, windowTitle: str, windowWidth: int, windowHeight: int) -> None:
         """Creates The Window"""
 
         def centerWindow(self: QWidget):
 
             """Centers the Window"""
 
-            screenCenter = (
-                QDesktopWidget().screenGeometry().center()
-            )  # Center of The Monitor
-            frameCenter = (
-                self.frameGeometry().center()
-            )  # Center of The Application Window
+            screenCenter = QDesktopWidget().screenGeometry().center()  # Center of The Monitor
+            frameCenter = self.frameGeometry().center()  # Center of The Application Window
 
             # Move Application Window to Center of Monitor
-            self.move(
-                screenCenter.x() - frameCenter.x(), screenCenter.y() - frameCenter.y()
-            )
+            self.move(screenCenter.x() - frameCenter.x(), screenCenter.y() - frameCenter.y())
 
         self.setWindowTitle(windowTitle)
 
@@ -61,7 +63,7 @@ class TicTacToeUi(QWidget):
         # gameButtonSize.setWidth(130)
         # gameButtonSize.setHeight(130)
         # gameButtonSize.scaled(130, 130, Qt.AspectRatioMode())
-            
+
         self.gameButton00 = QPushButton()
         self.gameButton01 = QPushButton()
         self.gameButton02 = QPushButton()
@@ -81,7 +83,6 @@ class TicTacToeUi(QWidget):
         self.gameButton20.setFixedSize(130, 130)
         self.gameButton21.setFixedSize(130, 130)
         self.gameButton22.setFixedSize(130, 130)
-
 
         self.gameButtonsLayout.addWidget(self.gameButton00, 0, 0)
         self.gameButtonsLayout.addWidget(self.gameButton01, 0, 1)
